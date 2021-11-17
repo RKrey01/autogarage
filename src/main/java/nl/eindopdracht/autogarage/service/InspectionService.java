@@ -1,11 +1,9 @@
 package nl.eindopdracht.autogarage.service;
 
-import nl.eindopdracht.autogarage.Enumeration.InspectionStatus;
 import nl.eindopdracht.autogarage.model.Car;
 import nl.eindopdracht.autogarage.model.Inspection;
 
 import java.time.LocalDate;
-import java.util.Enumeration;
 import java.util.List;
 
 public interface InspectionService {
@@ -18,5 +16,5 @@ public interface InspectionService {
 
     void deleteInspectionById(Long inspectionId);
 
-    Inspection updateInspection(Long inspectionId, Car car, Enumeration<InspectionStatus> status, LocalDate date, String shortcoming);
+    Inspection updateInspection(Long inspectionId, Car car, LocalDate date, String shortcoming);
 }
