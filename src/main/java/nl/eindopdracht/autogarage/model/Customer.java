@@ -1,9 +1,13 @@
 package nl.eindopdracht.autogarage.model;
 
+import lombok.ToString;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "customer")
@@ -21,6 +25,12 @@ public class Customer {
     )
     @Column(name = "CustomerId")
     private Long id;
+
+    @OneToMany(mappedBy = "customer")
+    @Column(name = "Car")
+    @NotBlank(message = "Veld is leeg!")
+    @ToString.Exclude
+    private List<Car> customerCars = new ArrayList<>();
 
     @Column(name = "FirstName")
     @NotBlank(message = "Veld is leeg!")
@@ -51,17 +61,14 @@ public class Customer {
     @NotBlank(message = "Veld is leeg!")
     private Integer phoneNumber;
 
-    @Column(name = "Car")
-    @NotBlank(message = "Veld is leeg!")
-    private Car car;
 
     // bean
     public Customer() {
     }
 
     // constructor with id
-    public Customer(Long id, String firstName, String lastName, String address, String zipcode,
-                    String email, LocalDate dob, Integer phoneNumber, Car car) {
+    public Customer(Long id, String firstName, String lastName, String address,
+                    String zipcode, String email, LocalDate dob, Integer phoneNumber, List<Car> customerCars) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -70,12 +77,11 @@ public class Customer {
         this.email = email;
         this.dob = dob;
         this.phoneNumber = phoneNumber;
-        this.car = car;
+        this.customerCars = customerCars;
     }
 
     // constructor without id, db generates id
-    public Customer(String firstName,String lastName, String address, String zipcode,
-                    String email, LocalDate dob, Integer phoneNumber, Car car) {
+    public Customer(String firstName, String lastName, String address, String zipcode, String email, LocalDate dob, Integer phoneNumber, List<Car> customerCars) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
@@ -83,7 +89,7 @@ public class Customer {
         this.email = email;
         this.dob = dob;
         this.phoneNumber = phoneNumber;
-        this.car = car;
+        this.customerCars = customerCars;
     }
 
     //Getters and Setters
@@ -151,12 +157,12 @@ public class Customer {
         this.phoneNumber = phoneNumber;
     }
 
-    public Car getCar() {
-        return car;
+    public List<Car> getCustomerCars() {
+        return customerCars;
     }
 
-    public void setCar(Car car) {
-        this.car = car;
+    public void setCustomerCars(List<Car> customerCars) {
+        this.customerCars = customerCars;
     }
 
     @Override
@@ -168,7 +174,7 @@ public class Customer {
                 ", zipcode='" + zipcode + '\'' +
                 ", email='" + email + '\'' +
                 ", phoneNumber=" + phoneNumber +
-                ", car=" + car +
+                ", car=" + customerCars +
                 '}';
     }
 }

@@ -1,6 +1,5 @@
 package nl.eindopdracht.autogarage.model;
 
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
@@ -22,7 +21,8 @@ public class Inspection {
     @Column(name = "InspectionId")
     private Long id;
 
-    @Column(name = "Car")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "car_id", referencedColumnName = "CarId")
     @NotBlank(message = "Veld is leeg!")
     private Car car;
 
@@ -90,6 +90,7 @@ public class Inspection {
     public String toString() {
         return "Inspection{" +
                 "id=" + id +
+                "car=" + car.getLicensePlate() +
                 ", date='" + date +  '\'' +
                 ", shortcoming='" + shortcoming + '\'' +
                 '}';

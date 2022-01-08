@@ -4,8 +4,7 @@ import nl.eindopdracht.autogarage.Enumeration.RepairStatus;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.Enumeration;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Table(name = "repair")
@@ -24,29 +23,38 @@ public class Repair {
     @Column(name = "RepairId")
     private Long id;
 
-    @Column(name = "Part")
-    @NotBlank(message = "Veld is leeg!")
-    private List<Part>  usedPart;
+    @ManyToMany
+    @JoinTable(
+            name = "parts_used",
+            joinColumns = @JoinColumn(name = "repair_id"),
+            inverseJoinColumns = @JoinColumn(name = "part_id")
+    )
+    private List<Part> usedPart = new ArrayList<>();
 
-    @Column(name = "RepairAction")
-    @NotBlank(message = "Veld is leeg!")
-    private List<RepairAction> repairAction;
+    @ManyToMany
+    @JoinTable(
+            name = "repairActions_performed",
+            joinColumns = @JoinColumn(name = "repair_id"),
+            inverseJoinColumns = @JoinColumn(name = "repairAction_id")
+    )
+    private List<RepairAction> repairAction = new ArrayList<>();
 
     @Column(name = "Status")
     @NotBlank(message = "Veld is leeg!")
-    private Enumeration<RepairStatus> status;
+    @Enumerated(EnumType.ORDINAL)
+    private RepairStatus status;
 
     public Repair() {
     }
 
-    public Repair(Long id, List<Part> usedPart, List<RepairAction> repairAction, Enumeration<RepairStatus> status) {
+    public Repair(Long id, List<Part> usedPart, List<RepairAction> repairAction, RepairStatus status) {
         this.id = id;
         this.usedPart = usedPart;
         this.repairAction = repairAction;
         this.status = status;
     }
 
-    public Repair(List<Part> usedPart, List<RepairAction> repairAction, Enumeration<RepairStatus> status) {
+    public Repair(List<Part> usedPart, List<RepairAction> repairAction, RepairStatus status) {
         this.usedPart = usedPart;
         this.repairAction = repairAction;
         this.status = status;
@@ -77,11 +85,11 @@ public class Repair {
         this.repairAction = repairAction;
     }
 
-    public Enumeration<RepairStatus> getStatus() {
+    public RepairStatus getStatus() {
         return status;
     }
 
-    public void setStatus(Enumeration<RepairStatus> status) {
+    public void setStatus(RepairStatus status) {
         this.status = status;
     }
 

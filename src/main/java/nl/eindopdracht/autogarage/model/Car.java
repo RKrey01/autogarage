@@ -2,6 +2,8 @@ package nl.eindopdracht.autogarage.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "car")
@@ -17,8 +19,15 @@ public class Car {
             generator = "car_sequence"
     )
 
-    @Column(name = "CarID")
+    @Column(name = "CarId")
     private Long id;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_id", referencedColumnName = "CustomerId")
+    private Customer customer;
+
+    @OneToMany(mappedBy = "car")
+    private Set<Inspection> carInspections = new HashSet<>();
 
     @Column(name = "LicensePlate", unique = true)
     @NotBlank(message = "Kenteken niet ingevoerd!")
@@ -34,7 +43,6 @@ public class Car {
 
     @Column(name = "ConstructionYear")
     @NotBlank(message = "Bouwjaar niet ingevoerd!")
-    // hier kunnen we die zelf uitrekekende ding voege?
     private Integer constructionYear;
 
 
@@ -99,6 +107,14 @@ public class Car {
 
     public void setConstructionYear(Integer constructionYear) {
         this.constructionYear = constructionYear;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public Set<Inspection> getCarInspections() {
+        return carInspections;
     }
 
     @Override

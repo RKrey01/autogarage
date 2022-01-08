@@ -2,6 +2,8 @@ package nl.eindopdracht.autogarage.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "part")
@@ -19,6 +21,9 @@ public class Part {
     )
     @Column(name = "PartId")
     private Long id;
+
+    @ManyToMany(mappedBy = "usedPart")
+    private Set<Repair> repairs = new HashSet<>();
 
     @Column(name = "Name")
     @NotBlank(message = "Veld is leeg!")
@@ -83,6 +88,10 @@ public class Part {
 
     public void setStock(Integer stock) {
         this.stock = stock;
+    }
+
+    public Set<Repair> getRepairs() {
+        return repairs;
     }
 
     @Override
