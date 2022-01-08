@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.time.Month.*;
@@ -19,16 +20,22 @@ public class CustomerConfig {
     @Bean
     CommandLineRunner commandLineRunner(CustomerRepository repository, CarRepository carRepository){
         return args -> {
-            Customer reyyan = new Customer(
-                    "Reyyan",
-                    "Kilinc",
+            List<Car> cars = new ArrayList<>();
+            cars.add(carRepository.getById(1L));
+
+            Customer tom = new Customer(
+                    "Tom",
+                    "Thompson",
                     "Adres1",
                     "postcode1",
-                    "RK@hotmail.com",
+                    "TomTom@hotmail.com",
                     LocalDate.of(2000, DECEMBER, 20),
                     062134553,
-                    carRepository.getById(1L)
+                    cars
             );
+
+            List<Car> carsJan = new ArrayList<>();
+            carsJan.add(carRepository.getById(2L));
 
             Customer jan = new Customer(
                     "Jan",
@@ -38,11 +45,11 @@ public class CustomerConfig {
                     "jan@hotmail.com",
                     LocalDate.of(1993, DECEMBER, 23),
                     06223453,
-                    carRepository.getById(2L)
+                    carsJan
             );
 
             repository.saveAll(
-                    List.of(reyyan, jan)
+                    List.of(tom, jan)
             );
         };
     }
