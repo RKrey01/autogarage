@@ -44,6 +44,9 @@ public class Repair {
     @Enumerated(EnumType.ORDINAL)
     private RepairStatus status;
 
+    @OneToOne(mappedBy = "repair")
+    private Receipt receipt;
+
     public Repair() {
     }
 

@@ -34,6 +34,9 @@ public class Inspection {
     @NotBlank(message = "Veld is leeg!")
     private String shortcoming;
 
+    @OneToOne(mappedBy = "inspection")
+    private Receipt receipt;
+
     // bean
     public Inspection() {
     }
