@@ -46,8 +46,8 @@ public class CustomerController {
             @RequestParam(required = false) String zipcode,
             @RequestParam(required = false) String email,
             @RequestParam(required = false) Integer phoneNumber,
-            @RequestParam(required = false) Car car) {
-        customerService.updateCustomer(customerId, address, zipcode, email, phoneNumber, car);
+            @RequestParam(required = false) List<Car> cars) {
+        customerService.updateCustomer(customerId, address, zipcode, email, phoneNumber, cars);
     }
 
 }

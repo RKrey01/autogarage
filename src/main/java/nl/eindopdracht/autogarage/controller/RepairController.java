@@ -6,7 +6,6 @@ import nl.eindopdracht.autogarage.service.RepairServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Enumeration;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,8 +30,8 @@ public class RepairController {
         return service.findReparationById(repairId);
     }
 
-    @GetMapping(path = "{repairStatus}")
-    public Optional<Repair> getReparationByStatus(@PathVariable("repairStatus") Enumeration<RepairStatus> status) {
+    @GetMapping(path = "{repairId}/{repairStatus}")
+    public Optional<Repair> getReparationByStatus(@RequestParam(value = "repairStatus") RepairStatus status) {
         return service.findReparationByStatus(status);
     }
 
@@ -51,7 +50,7 @@ public class RepairController {
             @PathVariable("repairId") Long repairId,
             @RequestParam(required = false) List<Part> part,
             @RequestParam(required = false) List<RepairAction> repairAction,
-            @RequestParam(required = false) Enumeration<RepairStatus> status) {
+            @RequestParam(required = false) RepairStatus status) {
         service.updateReparation(repairId, part, repairAction, status);
     }
 }

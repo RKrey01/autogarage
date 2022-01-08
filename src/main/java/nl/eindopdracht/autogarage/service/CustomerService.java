@@ -15,5 +15,5 @@ public interface CustomerService {
 
     void deleteCustomerById(Long customerId);
 
-    Customer updateCustomer(Long customerId, String address, String zipcode, String email, Integer phoneNumber, Car car);
+    Customer updateCustomer(Long customerId, String address, String zipcode, String email, Integer phoneNumber, List<Car> cars);
 }

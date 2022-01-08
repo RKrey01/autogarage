@@ -11,6 +11,6 @@ import java.util.Optional;
 @Repository
 public interface RepairRepository extends JpaRepository<Repair, Long> {
 
-    Optional<Repair> findReparationByStatus(Enumeration<RepairStatus> status);
+    Optional<Repair> findReparationByStatus(RepairStatus status);
 
 }

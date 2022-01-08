@@ -1,7 +1,6 @@
 package nl.eindopdracht.autogarage.repository;
 
 import nl.eindopdracht.autogarage.model.Car;
-import nl.eindopdracht.autogarage.model.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

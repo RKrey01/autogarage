@@ -15,12 +15,12 @@ public interface RepairService {
 
     Repair findReparationById(Long repairId);
 
-    Optional<Repair> findReparationByStatus(Enumeration<RepairStatus> status);
+    Optional<Repair> findReparationByStatus(RepairStatus status);
 
     void addNewReparation(Repair repair);
 
     void deleteReparationById(Long repairId);
 
-    Repair updateReparation(Long repairId, List<Part> usedPart, List<RepairAction> repairAction, Enumeration<RepairStatus> status);
+    Repair updateReparation(Long repairId, List<Part> usedPart, List<RepairAction> repairAction, RepairStatus status);
 
 }
