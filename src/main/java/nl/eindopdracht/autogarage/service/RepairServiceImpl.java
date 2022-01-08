@@ -4,10 +4,10 @@ import nl.eindopdracht.autogarage.Enumeration.RepairStatus;
 import nl.eindopdracht.autogarage.model.*;
 import nl.eindopdracht.autogarage.repository.RepairRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.Enumeration;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -18,7 +18,7 @@ public class RepairServiceImpl implements RepairService {
     private final RepairRepository repository;
 
     @Autowired
-    public RepairServiceImpl(RepairRepository repository) {
+    public RepairServiceImpl(@Lazy RepairRepository repository) {
         this.repository = repository;
     }
 
@@ -46,7 +46,7 @@ public class RepairServiceImpl implements RepairService {
     }
 
     @Override
-    public Optional<Repair> findReparationByStatus (Enumeration<RepairStatus> status) {
+    public Optional<Repair> findReparationByStatus (RepairStatus status) {
         return repository.findReparationByStatus(status);
     }
 
@@ -62,9 +62,9 @@ public class RepairServiceImpl implements RepairService {
     @Override
     @Transactional
     public Repair updateReparation(Long repairId, List<Part> usedPart, List<RepairAction> repairAction,
-                                   Enumeration<RepairStatus> status) {
+                                   RepairStatus status) {
         Repair repair = repository.findById(repairId)
-                .orElseThrow(() -> new IllegalStateException("Reparatie met id " + repairAction + " bestaat niet"));
+                .orElseThrow(() -> new IllegalStateException("Reparatie met id " + repairId + " bestaat niet"));
 
 
         for (Part p : usedPart) {

@@ -4,6 +4,7 @@ import nl.eindopdracht.autogarage.model.Car;
 import nl.eindopdracht.autogarage.model.Customer;
 import nl.eindopdracht.autogarage.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -17,7 +18,7 @@ public class CustomerServiceImpl implements CustomerService {
     private final CustomerRepository customerRepository;
 
     @Autowired
-    public CustomerServiceImpl(CustomerRepository customerRepository) {
+    public CustomerServiceImpl(@Lazy CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
 
@@ -33,7 +34,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public List<Customer> getCustomers(){
-    return customerRepository.findAll();
+        return customerRepository.findAll();
     }
 
     @Override
@@ -60,7 +61,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     @Transactional
-    public Customer updateCustomer(Long customerId, String address, String zipcode, String email, Integer phoneNumber, Car car) {
+    public Customer updateCustomer(Long customerId, String address, String zipcode, String email, Integer phoneNumber, List<Car> cars) {
         Customer customer = customerRepository.findById(customerId)
                 .orElseThrow(() -> new IllegalStateException("Klant met id " + customerId + " bestaat niet"));
 
@@ -86,14 +87,16 @@ public class CustomerServiceImpl implements CustomerService {
             customer.setPhoneNumber(phoneNumber);
         }
 
-        if (car != null && car.getLicensePlate().length() > 0 && !Objects.equals(customer.getCar(), car)) {
-            Optional<Customer> customerOptional = customerRepository.findCustomerByLicensePlate(car.getLicensePlate());
+
+        /*for (Car c: cars)
+            if (c != null && c.getLicensePlate().length() > 0 && !Objects.equals(customer.getCustomerCars(), c)) {
+            Optional<Customer> customerOptional = customerRepository.findCustomerByLicensePlate(c.getLicensePlate());
             if (customerOptional.isPresent()) {
                 throw new IllegalStateException("kenteken al geregistreerd");
             }
 
-            customer.setCar(car);
-        }
+            customer.getCustomerCars().add(c);
+        }*/
 
         return customer;
     }

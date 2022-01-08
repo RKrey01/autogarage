@@ -3,6 +3,7 @@ package nl.eindopdracht.autogarage.service;
 import nl.eindopdracht.autogarage.model.Car;
 import nl.eindopdracht.autogarage.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,7 +14,7 @@ public class CarServiceImpl implements CarService {
     private final CarRepository carRepository;
 
     @Autowired
-    public CarServiceImpl(CarRepository carRepository) {
+    public CarServiceImpl(@Lazy CarRepository carRepository) {
         this.carRepository = carRepository;
     }
 
@@ -21,7 +22,7 @@ public class CarServiceImpl implements CarService {
     public void addNewCar(Car car) {
         Optional<Car> carOptional = carRepository.findCarByLicensePlate(car.getLicensePlate());
         if (carOptional.isPresent()) {
-            throw new IllegalStateException("kenteken in gebruik.");
+            throw new IllegalStateException("Kenteken in gebruik.");
         }
         carRepository.save(car);
     }
@@ -49,7 +50,7 @@ public class CarServiceImpl implements CarService {
     public void deleteCarById(Long carId) {
         boolean exists = carRepository.existsById(carId);
         if (!exists) {
-            throw new IllegalStateException("Klant met id " + carId + " bestaat niet");
+            throw new IllegalStateException("Auto met id " + carId + " bestaat niet");
         }
         carRepository.deleteById(carId);
     }

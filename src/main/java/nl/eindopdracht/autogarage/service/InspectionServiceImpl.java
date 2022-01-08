@@ -4,6 +4,7 @@ import nl.eindopdracht.autogarage.model.Car;
 import nl.eindopdracht.autogarage.model.Inspection;
 import nl.eindopdracht.autogarage.repository.InspectionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -17,7 +18,7 @@ public class InspectionServiceImpl implements InspectionService{
     private final InspectionRepository inspectionRepository;
 
     @Autowired
-    public InspectionServiceImpl(InspectionRepository inspectionRepository) {
+    public InspectionServiceImpl(@Lazy InspectionRepository inspectionRepository) {
         this.inspectionRepository = inspectionRepository;
     }
 

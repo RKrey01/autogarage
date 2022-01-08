@@ -3,6 +3,7 @@ package nl.eindopdracht.autogarage.service;
 import nl.eindopdracht.autogarage.model.Part;
 import nl.eindopdracht.autogarage.repository.PartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -16,7 +17,7 @@ public class PartServiceImpl implements PartService{
     private final PartRepository partRepository;
 
     @Autowired
-    public PartServiceImpl(PartRepository partRepository) {
+    public PartServiceImpl(@Lazy PartRepository partRepository) {
         this.partRepository = partRepository;
     }
 

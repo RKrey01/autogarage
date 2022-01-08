@@ -3,6 +3,7 @@ package nl.eindopdracht.autogarage.service;
 import nl.eindopdracht.autogarage.model.RepairAction;
 import nl.eindopdracht.autogarage.repository.RepairActionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -16,8 +17,8 @@ public class RepairActionServiceImpl implements RepairActionService{
     private final RepairActionRepository repository;
 
     @Autowired
-    public RepairActionServiceImpl(RepairActionRepository repository) {
-            this.repository = repository;
+    public RepairActionServiceImpl(@Lazy RepairActionRepository repository) {
+        this.repository = repository;
     }
 
     @Override
