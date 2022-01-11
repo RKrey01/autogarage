@@ -92,6 +92,18 @@ public class Customer {
         this.customerCars = customerCars;
     }
 
+    //voor test!
+    public Customer(String firstName, String lastName, String address,
+                    String zipcode, String email, LocalDate dob, Integer phoneNumber) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.zipcode = zipcode;
+        this.email = email;
+        this.dob = dob;
+        this.phoneNumber = phoneNumber;
+    }
+
     //Getters and Setters
     public Long getId() {
         return id;
