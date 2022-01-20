@@ -43,7 +43,7 @@ public class CustomerConfig {
                     "Adres2",
                     "postcode2",
                     "jan@hotmail.com",
-                    LocalDate.of(1993, DECEMBER, 23),
+                    LocalDate.of(1993, JUNE, 23),
                     06223453,
                     carsJan
             );
