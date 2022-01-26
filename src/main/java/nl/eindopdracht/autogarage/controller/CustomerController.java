@@ -1,6 +1,5 @@
 package nl.eindopdracht.autogarage.controller;
 
-import nl.eindopdracht.autogarage.model.Car;
 import nl.eindopdracht.autogarage.model.Customer;
 import nl.eindopdracht.autogarage.service.CustomerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,9 +44,8 @@ public class CustomerController {
             @RequestParam(required = false) String address,
             @RequestParam(required = false) String zipcode,
             @RequestParam(required = false) String email,
-            @RequestParam(required = false) Integer phoneNumber,
-            @RequestParam(required = false) List<Car> cars) {
-        customerService.updateCustomer(customerId, address, zipcode, email, phoneNumber, cars);
+            @RequestParam(required = false) Integer phoneNumber) {
+        customerService.updateCustomer(customerId, address, zipcode, email, phoneNumber);
     }
 
 }

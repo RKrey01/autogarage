@@ -1,3 +1,4 @@
+/*
 package nl.eindopdracht.autogarage.controller;
 
 import nl.eindopdracht.autogarage.model.RepairAction;
@@ -71,4 +72,4 @@ class RepairActionControllerTest {
 
         verify(service).deleteRepairActionById(repairAction.getId());
     }
-}
+}*/

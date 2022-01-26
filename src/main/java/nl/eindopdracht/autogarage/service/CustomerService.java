@@ -1,6 +1,5 @@
 package nl.eindopdracht.autogarage.service;
 
-import nl.eindopdracht.autogarage.model.Car;
 import nl.eindopdracht.autogarage.model.Customer;
 
 import java.util.List;
@@ -15,5 +14,5 @@ public interface CustomerService {
 
     void deleteCustomerById(Long customerId);
 
-    Customer updateCustomer(Long customerId, String address, String zipcode, String email, Integer phoneNumber, List<Car> cars);
+    Customer updateCustomer(Long customerId, String address, String zipcode, String email, Integer phoneNumber);
 }

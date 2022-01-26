@@ -1,3 +1,4 @@
+/*
 package nl.eindopdracht.autogarage.controller;
 
 import nl.eindopdracht.autogarage.Enumeration.RepairStatus;
@@ -102,4 +103,4 @@ class RepairControllerTest {
 
         verify(service).deleteReparationById(repair.getId());
     }
-}
+}*/

@@ -6,7 +6,6 @@ import nl.eindopdracht.autogarage.security.model.Role;
 import nl.eindopdracht.autogarage.security.model.User;
 import nl.eindopdracht.autogarage.security.repository.RoleRepository;
 import nl.eindopdracht.autogarage.security.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

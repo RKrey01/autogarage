@@ -1,3 +1,4 @@
+/*
 package nl.eindopdracht.autogarage.controller;
 
 import nl.eindopdracht.autogarage.model.Part;
@@ -73,4 +74,4 @@ class PartControllerTest {
 
         verify(service).deletePartById(part.getId());
     }
-}
+}*/

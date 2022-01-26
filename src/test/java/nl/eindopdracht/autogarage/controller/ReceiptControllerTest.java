@@ -1,3 +1,4 @@
+/*
 package nl.eindopdracht.autogarage.controller;
 
 import nl.eindopdracht.autogarage.model.Receipt;
@@ -41,4 +42,4 @@ class ReceiptControllerTest {
         //to know that the mock is being called
         verify(service).getReceipts();
     }
-}
+}*/

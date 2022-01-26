@@ -30,7 +30,7 @@ public class RepairController {
         return service.findReparationById(repairId);
     }
 
-    @GetMapping(path = "{repairId}/{repairStatus}")
+    @GetMapping(path = "{repairStatus}")
     public Optional<Repair> getReparationByStatus(@RequestParam(value = "repairStatus") RepairStatus status) {
         return service.findReparationByStatus(status);
     }

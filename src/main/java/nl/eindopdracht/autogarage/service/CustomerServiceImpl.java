@@ -1,6 +1,5 @@
 package nl.eindopdracht.autogarage.service;
 
-import nl.eindopdracht.autogarage.model.Car;
 import nl.eindopdracht.autogarage.model.Customer;
 import nl.eindopdracht.autogarage.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,7 +60,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     @Transactional
-    public Customer updateCustomer(Long customerId, String address, String zipcode, String email, Integer phoneNumber, List<Car> cars) {
+    public Customer updateCustomer(Long customerId, String address, String zipcode, String email, Integer phoneNumber) {
         Customer customer = customerRepository.findById(customerId)
                 .orElseThrow(() -> new IllegalStateException("Klant met id " + customerId + " bestaat niet"));
 
@@ -86,17 +85,6 @@ public class CustomerServiceImpl implements CustomerService {
         if (phoneNumber != null && phoneNumber > 0 && !Objects.equals(customer.getPhoneNumber(), phoneNumber)) {
             customer.setPhoneNumber(phoneNumber);
         }
-
-
-        /*for (Car c: cars)
-            if (c != null && c.getLicensePlate().length() > 0 && !Objects.equals(customer.getCustomerCars(), c)) {
-            Optional<Customer> customerOptional = customerRepository.findCustomerByLicensePlate(c.getLicensePlate());
-            if (customerOptional.isPresent()) {
-                throw new IllegalStateException("kenteken al geregistreerd");
-            }
-
-            customer.getCustomerCars().add(c);
-        }*/
 
         return customer;
     }

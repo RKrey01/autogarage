@@ -1,3 +1,4 @@
+/*
 package nl.eindopdracht.autogarage.controller;
 
 import nl.eindopdracht.autogarage.model.Car;
@@ -8,6 +9,7 @@ import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
@@ -20,6 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(CarController.class)
+//@WithMockUser
 class CarControllerTest {
 
     @Autowired
@@ -32,6 +35,7 @@ class CarControllerTest {
     private CarRepository repository;
 
     @Test
+    @WithMockUser(username = "admin")
     void shouldGetAllCars() throws Exception {
         List<Car> cars = repository.findAll();
         when(service.getCars())
@@ -61,10 +65,6 @@ class CarControllerTest {
         verify(service).findCarById(car.getId());
     }
 
-    /*@Test
-    void registerNewCar() {
-    }*/
-
     @Test
     void shouldDeleteCarById() throws Exception {
         Car car = new Car(
@@ -79,4 +79,4 @@ class CarControllerTest {
 
         verify(service).deleteCarById(car.getId());
     }
-}
+}*/
